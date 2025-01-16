@@ -3,6 +3,6 @@ pikepdf
 pdfplumber
 pandas
 numpy
-regex
-plotly
+re
+plotly-express
 collections
