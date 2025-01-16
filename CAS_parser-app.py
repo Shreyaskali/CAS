@@ -81,13 +81,15 @@ def extract_data_from_pdf(pdf_file):
 # Streamlit UI
 st.title("MF CAS Analytics")
 st.caption("This app allows you to upload your Consolidated Account Statement (CAS) PDF, unlock it using the provided password, and analyze your mutual fund investments. You can view a summary of your portfolio, detailed transaction history, and insightful visualizations of your investments.")
-st.divider()
+# st.divider()
 
-# Upload PDF file
-uploaded_file = st.file_uploader("Upload your CAS PDF file", type=["pdf"])
+with st.expander("Upload your CAS PDF", expanded=True):
+    # Upload PDF file
+    uploaded_file = st.file_uploader("", type=["pdf"])
 
-# Password input
-password = st.text_input("Enter PDF password", type="password")
+    # Password input
+    password = st.text_input("Enter PDF password", type="password")
+
 # Description of the app
 if uploaded_file and password:
     # Save the uploaded file temporarily
@@ -98,11 +100,7 @@ if uploaded_file and password:
     unlocked_pdf = unlock_pdf("uploaded_file.pdf", "unlocked.pdf", password)
 
     if unlocked_pdf:
-        with st.spinner("Analyzing data from PDF..."):
-            st.success("CAS Successfully fetched!")
-            time.sleep(3)
         st.divider()
-        
         # Extract data from unlocked PDF
         df_portfolio, df_transactions = extract_data_from_pdf(unlocked_pdf)
 
@@ -156,7 +154,8 @@ if uploaded_file and password:
 
     else:
         st.error("Incorrect password or unable to decrypt PDF.")
-
+else:
+    st.info("Please upload your CAS PDF and enter the password to unlock it.")
 
 st.divider()
 st.caption("Created with :heart: for Investors by [Kali Wealth](https://kaliwealth.in)") 
