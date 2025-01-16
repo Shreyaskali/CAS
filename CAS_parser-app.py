@@ -82,7 +82,9 @@ def extract_data_from_pdf(pdf_file):
 st.title("MF CAS Analytics")
 st.caption("This app allows you to upload your Consolidated Account Statement (CAS) PDF, unlock it using the provided password, and analyze your mutual fund investments. You can view a summary of your portfolio, detailed transaction history, and insightful visualizations of your investments.")
 # st.divider()
-
+with st.expander("Fetch your CAS PDF from CAMS", expanded=False):
+    st.caption("To download your CAS PDF from CAMS, follow these steps:")
+    st.caption("1. Visit the CAMS website: [CAS - CAMS+KFintech](https://www.camsonline.com/Investors/Statements/Consolidated-Account-Statement) \n2. Select statement type as 'Detailed' and choose 'Current Financial Year' as the period. \n3. Enter your email ID associated with your mutual fund investments. \n4. Create a password to encrypt the PDF. \n5. Click on 'Generate PDF', and you will receive the CAS PDF in your email.")
 with st.expander("Upload your CAS PDF", expanded=True):
     # Upload PDF file
     uploaded_file = st.file_uploader("", type=["pdf"])
