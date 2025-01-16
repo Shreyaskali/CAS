@@ -1,0 +1,8 @@
+streamlit
+pikepdf
+pdfplumber
+pandas
+numpy
+regex
+plotly
+collections
